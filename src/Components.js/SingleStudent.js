@@ -16,11 +16,15 @@ class SingleStudent extends Component {
       const { name } = this.state.student.student;
 
       return (
-        <div>
+        <div className="students-container">
           <Header></Header>
           <Nav></Nav>
-          <h3>{name}</h3>
-          <p>Current Block: {currentBlock.name}</p>
+          <div className="student-list">
+            <div className="student-card">
+              <h3>{name}</h3>
+              <p>Current Block: {currentBlock.name}</p>
+            </div>
+          </div>
         </div>
       );
     }
