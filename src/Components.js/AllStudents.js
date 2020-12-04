@@ -20,10 +20,10 @@ class AllStudents extends Component {
     } else {
       return (
         <div className="students-container">
-          {/* <div className="bg"></div> */}
           <Header></Header>
-          <h3>All Students</h3>
+          <h3 className="header-text">All Students</h3>
           <Nav></Nav>
+          <div className='student-counter'>Total Students: {this.state.students.length}</div>
           <div className="students-list-container">
             <div className="student-list">
               {this.state.students.map((student) => {

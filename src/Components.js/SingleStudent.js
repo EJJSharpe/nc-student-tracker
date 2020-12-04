@@ -1,10 +1,37 @@
 import React, { Component } from "react";
 import Header from "./Header";
 import Nav from "./Nav";
+import { navigate } from "@reach/router";
+import Button from "react-bootstrap/Button";
 const axios = require("axios");
 
 class SingleStudent extends Component {
   state = { student: {}, isLoading: true };
+
+  handleRemove = (event) => {
+    const id = this.state.student.student._id
+    this.deleteStudent(id)
+  }
+
+  deleteStudent = async (id) => {
+    await axios.delete(`https://nc-student-tracker.herokuapp.com/api/students/${id}`)
+    navigate(`/students/`)
+  }
+
+  handleProgress = () => {
+    const id = this.state.student.student._id
+    this.progressStudent(id)
+  }
+
+  progressStudent = async (id) => {
+    const student = await axios.patch(`https://nc-student-tracker.herokuapp.com/api/students/${id}?progress=true`)
+    const reload = window.location.reload(true)
+    reload()
+
+  }
+
+
+
   render() {
     // const { name, blockHistory, startingCohort } = this.state.data.student;
     if (this.state.isLoading) {
@@ -23,6 +50,8 @@ class SingleStudent extends Component {
             <div className="student-card">
               <h3>{name}</h3>
               <p>Current Block: {currentBlock.name}</p>
+              <Button onClick={this.handleRemove} variant="danger">Delete</Button>
+              <Button onClick={this.handleProgress} variant="primary">Progress</Button>
             </div>
           </div>
         </div>
@@ -33,6 +62,7 @@ class SingleStudent extends Component {
   componentDidMount() {
     this.getStudent().then((student) => {
       this.setState({ student, isLoading: false });
+      console.log(this.state.student, 'did mount')
     });
   }
 
