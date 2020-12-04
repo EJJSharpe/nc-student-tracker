@@ -19,7 +19,7 @@ class SingleStudent extends Component {
         <div className="students-container">
           <Header></Header>
           <Nav></Nav>
-          <div className="student-list">
+          <div className="student-card-container">
             <div className="student-card">
               <h3>{name}</h3>
               <p>Current Block: {currentBlock.name}</p>

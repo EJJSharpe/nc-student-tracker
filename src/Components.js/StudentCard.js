@@ -5,16 +5,18 @@ const StudentCard = (props) => {
   const { name, currentBlock, startingCohort, _id } = props.studentInfo;
 
   return (
-    <div className="student-card">
-      <li>
-        <h3>{name}</h3>
-        <p>Starting Cohort: {startingCohort}</p>
-        <p>Current Block: {currentBlock}</p>
+    <>
+      <ul className="student-card">
+        <li>
+          <h3>{name}</h3>
+          <p>Starting Cohort: {startingCohort}</p>
+          <p>Current Block: {currentBlock}</p>
+        </li>
         <Link to={`/students/id/${_id}`}>
           <Button variant="dark">More Info</Button>
         </Link>
-      </li>
-    </div>
+      </ul>
+    </>
   );
 };
 
